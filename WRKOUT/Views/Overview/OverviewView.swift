@@ -8,30 +8,76 @@
 import SwiftUI
 
 struct OverviewView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(entity: Workout.entity(), sortDescriptors: [], predicate: nil)
+    var workouts: FetchedResults<Workout>
+    
+    @State private var showNewTrainingSheet = false
+    @State private var alertInput = ""
+    
     var body: some View {
         VStack {
             NavigationView {
                 List {
-                    NavigationLink(
-                        destination: TrainingView(title: "Chest")) {
-                        OverviewRow(title: "Chest").font(.body)
-                    }
-                }.navigationBarTitle(Text("WRKOUT"), displayMode: .large)
+                    ForEach(workouts) { workout in
+                        NavigationLink(
+                            destination:
+                                TrainingView(
+                                    title: ("\(String(describing: workout.name!))"))) {
+                            OverviewRow(
+                                title: ("\(String(describing: workout.name!))"))
+                                .font(.body)
+                        }
+                    }.onDelete(perform: deleteWorkout)
+                    
+                }
+                .navigationBarTitle(Text("WRKOUT"), displayMode: .large)
                 .toolbar {
                     
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button("+") {
-                            print("add")
+                            self.showNewTrainingSheet = true
                         }
                     }
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Edit") {
-                            print("edit")
-                        }
+                        EditButton()
                     }
-                 }
+                }
             }
+            if self.showNewTrainingSheet {
+                NewWorkoutPopup(textString: $alertInput,
+                                showAlert: $showNewTrainingSheet,
+                                title: "New Workout",
+                                message: "Save new workout",
+                                overview: self)
+            }
+        }
+        
+    }
+    
+    func saveNewWorkout(workoutName: String) {
+        let newWorkout = Workout(context: viewContext)
+        newWorkout.id = UUID()
+        newWorkout.name = workoutName
+        do {
+            try viewContext.save()
+            print("workout saved")
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func deleteWorkout(at offsets: IndexSet) {
+        for index in offsets {
+            let workout = workouts[index]
+            viewContext.delete(workout)
+        }
+        do {
+            try viewContext.save()
+            print("workout deleted")
+        } catch {
+            print(error)
         }
     }
 }
