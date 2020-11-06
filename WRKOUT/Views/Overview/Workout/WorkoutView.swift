@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct TrainingView: View {
+struct WorkoutView: View {
     var title: String
     var body: some View {
         Text(title)
     }
 }
 
-struct TrainingView_Previews: PreviewProvider {
+struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
-        TrainingView(title: "Chest")
+        WorkoutView(title: "Chest")
     }
 }

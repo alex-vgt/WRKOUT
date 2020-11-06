@@ -11,7 +11,7 @@
 		9636F88725555104006B74DC /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9636F88525555104006B74DC /* Workout+CoreDataProperties.swift */; };
 		964B2CF6255559F700E275F7 /* NewWorkoutPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B2CF5255559F700E275F7 /* NewWorkoutPopup.swift */; };
 		968E5F3D254C15D400790640 /* OverviewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968E5F3C254C15D400790640 /* OverviewRow.swift */; };
-		968E5F43254C164D00790640 /* TrainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968E5F42254C164D00790640 /* TrainingView.swift */; };
+		968E5F43254C164D00790640 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968E5F42254C164D00790640 /* WorkoutView.swift */; };
 		9694A940254F168600EFEC12 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9694A93A254F168600EFEC12 /* Exercise+CoreDataClass.swift */; };
 		9694A941254F168600EFEC12 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9694A93B254F168600EFEC12 /* Exercise+CoreDataProperties.swift */; };
 		9694A944254F168600EFEC12 /* Set+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9694A93E254F168600EFEC12 /* Set+CoreDataClass.swift */; };
@@ -54,7 +54,7 @@
 		9636F88525555104006B74DC /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		964B2CF5255559F700E275F7 /* NewWorkoutPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutPopup.swift; sourceTree = "<group>"; };
 		968E5F3C254C15D400790640 /* OverviewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewRow.swift; sourceTree = "<group>"; };
-		968E5F42254C164D00790640 /* TrainingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingView.swift; sourceTree = "<group>"; };
+		968E5F42254C164D00790640 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		9694A93A254F168600EFEC12 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9694A93B254F168600EFEC12 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9694A93E254F168600EFEC12 /* Set+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -106,12 +106,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		968E5F41254C162E00790640 /* Training */ = {
+		968E5F41254C162E00790640 /* Workout */ = {
 			isa = PBXGroup;
 			children = (
-				968E5F42254C164D00790640 /* TrainingView.swift */,
+				968E5F42254C164D00790640 /* WorkoutView.swift */,
 			);
-			path = Training;
+			path = Workout;
 			sourceTree = "<group>";
 		};
 		96BA7758254EC7600031768A /* Workout */ = {
@@ -223,7 +223,7 @@
 		96E423EE254BFEC70097ADF9 /* Overview */ = {
 			isa = PBXGroup;
 			children = (
-				968E5F41254C162E00790640 /* Training */,
+				968E5F41254C162E00790640 /* Workout */,
 				96E423EF254BFEED0097ADF9 /* OverviewView.swift */,
 				968E5F3C254C15D400790640 /* OverviewRow.swift */,
 				964B2CF5255559F700E275F7 /* NewWorkoutPopup.swift */,
@@ -393,7 +393,7 @@
 				96CB1BBA254BEF5F001E1213 /* HomeView.swift in Sources */,
 				96BA7783254ECBDE0031768A /* Persistence.swift in Sources */,
 				96E4240F254C035E0097ADF9 /* ProfileSettingsView.swift in Sources */,
-				968E5F43254C164D00790640 /* TrainingView.swift in Sources */,
+				968E5F43254C164D00790640 /* WorkoutView.swift in Sources */,
 				96CB1B8C254BED31001E1213 /* ContentView.swift in Sources */,
 				96BA773F254EC2A00031768A /* WrkoutData.xcdatamodeld in Sources */,
 				96CB1B8A254BED31001E1213 /* WRKOUTApp.swift in Sources */,

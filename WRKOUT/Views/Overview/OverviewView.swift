@@ -22,7 +22,7 @@ struct OverviewView: View {
                     ForEach(workouts) { workout in
                         NavigationLink(
                             destination:
-                                TrainingView(
+                                WorkoutView(
                                     title: ("\(String(describing: workout.name!))"))) {
                             OverviewRow(
                                 title: ("\(String(describing: workout.name!))"))
