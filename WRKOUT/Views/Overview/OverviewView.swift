@@ -23,7 +23,7 @@ struct OverviewView: View {
                         NavigationLink(
                             destination:
                                 WorkoutView(
-                                    title: ("\(String(describing: workout.name!))"))) {
+                                    workout: workout)) {
                             OverviewRow(
                                 title: ("\(String(describing: workout.name!))"))
                                 .font(.body)
@@ -33,15 +33,14 @@ struct OverviewView: View {
                 }
                 .navigationBarTitle(Text("WRKOUT"), displayMode: .large)
                 .toolbar {
-                    
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button("+") {
+                    Menu {
+                        Button("Add Workout") {
                             self.showNewTrainingSheet = true
                         }
-                    }
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) {
                         EditButton()
+                    }
+                    label: {
+                        Label("Edit", systemImage: "ellipsis.circle").font(.body)
                     }
                 }
             }

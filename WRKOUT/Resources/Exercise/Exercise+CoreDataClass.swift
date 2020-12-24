@@ -2,7 +2,7 @@
 //  Exercise+CoreDataClass.swift
 //  WRKOUT
 //
-//  Created by Alex Voigt on 01.11.20.
+//  Created by Alex Voigt on 28.11.20.
 //
 //
 
