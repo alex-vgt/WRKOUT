@@ -115,7 +115,6 @@
 		968E5F41254C162E00790640 /* Workout */ = {
 			isa = PBXGroup;
 			children = (
-				96CB180C2555A19100BCC8B6 /* Exercise */,
 				960302CD2572C06800DA3C2D /* NewExercisePopup.swift */,
 				968E5F42254C164D00790640 /* WorkoutView.swift */,
 				96CB18122555A22F00BCC8B6 /* WorkoutRow.swift */,
@@ -221,6 +220,8 @@
 		96CB1BB7254BEEFA001E1213 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				968E5F41254C162E00790640 /* Workout */,
+				96CB180C2555A19100BCC8B6 /* Exercise */,
 				96E42400254C01370097ADF9 /* Settings */,
 				96E423F7254BFFDA0097ADF9 /* Analytics */,
 				96E423EE254BFEC70097ADF9 /* Overview */,
@@ -240,7 +241,6 @@
 		96E423EE254BFEC70097ADF9 /* Overview */ = {
 			isa = PBXGroup;
 			children = (
-				968E5F41254C162E00790640 /* Workout */,
 				96E423EF254BFEED0097ADF9 /* OverviewView.swift */,
 				968E5F3C254C15D400790640 /* OverviewRow.swift */,
 				964B2CF5255559F700E275F7 /* NewWorkoutPopup.swift */,

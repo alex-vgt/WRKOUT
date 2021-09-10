@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct WorkoutView: View {
-
-    
     var workout: Workout
     @State private var showNewExercisePopup = false
     @State private var alertInput = ""
@@ -21,7 +19,9 @@ struct WorkoutView: View {
     var body: some View {
         VStack {
             List {
-                ForEach(exercises) { exercise in
+                ForEach(exercises.filter {
+                    $0.workout == workout
+                }) { exercise in
                     NavigationLink(
                         destination: ExerciseView(
                             title: ("\(String(describing: exercise.name!))"))) {
