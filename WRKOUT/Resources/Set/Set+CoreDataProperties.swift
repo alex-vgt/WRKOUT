@@ -20,7 +20,7 @@ extension Set {
     @NSManaged public var id: UUID?
     @NSManaged public var reps: Int64
     @NSManaged public var weight: Int64
-    @NSManaged public var set: Exercise?
+    @NSManaged public var exercise: Exercise?
 
 }
 

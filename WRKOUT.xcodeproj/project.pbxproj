@@ -33,6 +33,7 @@
 		96E42402254C01470097ADF9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E42401254C01470097ADF9 /* SettingsView.swift */; };
 		96E4240A254C03430097ADF9 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E42409254C03430097ADF9 /* GeneralSettingsView.swift */; };
 		96E4240F254C035E0097ADF9 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E4240E254C035E0097ADF9 /* ProfileSettingsView.swift */; };
+		9A87E40E26EB7C9D00BDD618 /* ExerciseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A87E40D26EB7C9D00BDD618 /* ExerciseRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		96E42401254C01470097ADF9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		96E42409254C03430097ADF9 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		96E4240E254C035E0097ADF9 /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
+		9A87E40D26EB7C9D00BDD618 /* ExerciseRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				96CB180D2555A1AA00BCC8B6 /* ExerciseView.swift */,
+				9A87E40D26EB7C9D00BDD618 /* ExerciseRow.swift */,
 			);
 			path = Exercise;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				96CB180E2555A1AA00BCC8B6 /* ExerciseView.swift in Sources */,
 				96CB1B8C254BED31001E1213 /* ContentView.swift in Sources */,
 				96BA773F254EC2A00031768A /* WrkoutData.xcdatamodeld in Sources */,
+				9A87E40E26EB7C9D00BDD618 /* ExerciseRow.swift in Sources */,
 				96CB18132555A22F00BCC8B6 /* WorkoutRow.swift in Sources */,
 				96CB1B8A254BED31001E1213 /* WRKOUTApp.swift in Sources */,
 				960302F12572D00800DA3C2D /* Set+CoreDataClass.swift in Sources */,
@@ -589,7 +593,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WRKOUT/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WRKOUT/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -597,7 +601,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.voigt.WRKOUT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -610,7 +614,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WRKOUT/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WRKOUT/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -618,7 +622,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.voigt.WRKOUT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

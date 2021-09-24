@@ -18,23 +18,24 @@ struct WorkoutView: View {
     
     var body: some View {
         VStack {
-            List {
-                ForEach(exercises.filter {
-                    $0.workout == workout
-                }) { exercise in
-                    NavigationLink(
-                        destination: ExerciseView(
-                            title: ("\(String(describing: exercise.name!))"))) {
+                
+                List {
+                    ForEach(exercises.filter {
+                        $0.workout == workout
+                    }) { exercise in
+                        NavigationLink(
+                            destination: ExerciseView(
+                                exercise: exercise,
+                                title: ("\(String(describing: exercise.name!))"))) {
                             WorkoutRow(
-                            title: ("\(String(describing: exercise.name!))"))
+                                title: ("\(String(describing: exercise.name!))"))
                                 .font(.body)
                         }
-                }.onDelete(perform: deleteExercise)
-            }
-
-            .navigationBarTitle(Text(workout.name!), displayMode: .inline)
-            .toolbar {
-
+                    }.onDelete(perform: deleteExercise)
+                }
+                .navigationBarTitle(Text(workout.name!), displayMode: .inline)
+                .toolbar {
+                    
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Menu {
                             Button("Add Exercise") {
@@ -47,15 +48,16 @@ struct WorkoutView: View {
                         }
                         
                     }
+                }
+
+            if self.showNewExercisePopup {
+                NewExercisePopup(textString: $alertInput,
+                                 showAlert: $showNewExercisePopup,
+                                 title: "New Exercise",
+                                 message: "Save new exercise",
+                                 overview: self)
             }
     }
-        if self.showNewExercisePopup {
-            NewExercisePopup(textString: $alertInput,
-                            showAlert: $showNewExercisePopup,
-                            title: "New Exercise",
-                            message: "Save new exercise",
-                            overview: self)
-        }
     }
     
     func saveNewExercise(exerciseName: String) {

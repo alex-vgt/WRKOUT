@@ -57,6 +57,7 @@ struct NewWorkoutPopup: UIViewControllerRepresentable {
                 alert.dismiss(animated: true) {
                     self.showAlert = false
                 }
+                self.textString = ""
             })
 
             // Most important, must be dispatched on Main thread,

@@ -44,6 +44,7 @@ struct OverviewView: View {
                     }
                 }
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             if self.showNewTrainingSheet {
                 NewWorkoutPopup(textString: $alertInput,
                                 showAlert: $showNewTrainingSheet,
