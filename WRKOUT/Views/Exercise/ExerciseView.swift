@@ -30,27 +30,29 @@ struct ExerciseView: View {
                 List {
                     ForEach(sets.filter {
                         $0.exercise == exercise
-                    }) { set in
+                    }) { workoutSet in
                             ExerciseRow(
-                                title: ("\(String(describing: set.weight.description))"))
+                                reps: Int(workoutSet.reps),
+                                weight: workoutSet.weight)
                                 .font(.body)
                     }
                 }
 
             }
-
+            // New set sheet
             .sheet(isPresented: $showSheet) {
                 NavigationView {
                     VStack {
                         Divider()
+
                         Text("Reps").font(Font.body.weight(.bold))
                         Stepper("\(repCount)",
                                 value: $repCount,
                                 in: 0...100)
-                            .padding(5)
                         Divider()
+
                         Text("Weight").font(Font.body.weight(.bold))
-                        TextField("Weight", value: $weightCount, formatter: formatter)
+                        TextField("Weightttt", value: $weightCount, formatter: formatter)
                             .font(Font.body.weight(.medium))
                             .padding(5)
                             .keyboardType(.decimalPad)
@@ -85,12 +87,30 @@ struct ExerciseView: View {
             }
         }
     }
+    
+    func saveNewSet(reps: Int, weight: Double) {
+        print(reps, weight)
+        let newSet = Set(context: viewContext)
+        newSet.weight = weight
+        newSet.reps = Int64(reps)
+        newSet.exercise = exercise
+        newSet.id = UUID()
+        if #available(iOS 15, *) {
+            newSet.created = Date.now
+        } else {
+            newSet.created = Date()
+        }
+        do {
+            try viewContext.save()
+            print("Set saved")
+            repCount = 0
+            weightCount = 0.0
+        } catch {
+            print(error)
+        }
+    }
 }
 
-func saveNewSet(reps: Int, weight: Double) {
-    print(reps, weight)
-
-}
 
 public struct CustomButtonStyle: ButtonStyle {
     public func makeBody(configuration: Self.Configuration) -> some View {
@@ -98,7 +118,7 @@ public struct CustomButtonStyle: ButtonStyle {
             .font(Font.body.weight(.medium))
             .padding(.vertical, 12)
             .foregroundColor(Color.white)
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: 200)
             .background(
                 RoundedRectangle(cornerRadius: 14.0, style: .continuous)
                     .fill(Color.accentColor)

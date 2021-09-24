@@ -8,14 +8,9 @@
 import SwiftUI
 
 struct ExerciseRow: View {
-    var title: String
+    var reps: Int
+    var weight: Double
     var body: some View {
-        Text(title)
-    }
-}
-
-struct ExerciseRow_Previews: PreviewProvider {
-    static var previews: some View {
-        ExerciseRow(title: "Set")
+        Text("Reps: \(reps.description), Weight: \(weight.description)")
     }
 }
