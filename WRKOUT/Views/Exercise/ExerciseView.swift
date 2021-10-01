@@ -28,14 +28,19 @@ struct ExerciseView: View {
     var body: some View {
             VStack {
                 List {
-                    ForEach(sets.filter {
-                        $0.exercise == exercise
-                    }) { workoutSet in
+                    Section(content:{
+                        ForEach(sets.filter {
+                            $0.exercise == exercise
+                        }) { workoutSet in
                             ExerciseRow(
                                 reps: Int(workoutSet.reps),
                                 weight: workoutSet.weight)
                                 .font(.body)
-                    }
+                        }
+                        // needs to be date
+                    }, header: {
+                        Text("uga uga")
+                    })
                 }
 
             }
@@ -52,7 +57,7 @@ struct ExerciseView: View {
                         Divider()
 
                         Text("Weight").font(Font.body.weight(.bold))
-                        TextField("Weightttt", value: $weightCount, formatter: formatter)
+                        TextField("Weight", value: $weightCount, formatter: formatter)
                             .font(Font.body.weight(.medium))
                             .padding(5)
                             .keyboardType(.decimalPad)
@@ -61,12 +66,14 @@ struct ExerciseView: View {
                             self.showSheet = false
                         }) {
                             Text("Add")
-                        }.buttonStyle(CustomButtonStyle())
+                        }.disabled(weightCount == 0.0 || repCount == 0)
+                        .buttonStyle(CustomButtonStyle())
                     }
                     .toolbar {
                         ToolbarItem(placement: .primaryAction) {
                             Button(action: {
                                 self.showSheet = false
+                                cleanFields()
                             }) {
                                 Text("Done").fontWeight(.semibold)
                             }
@@ -103,11 +110,15 @@ struct ExerciseView: View {
         do {
             try viewContext.save()
             print("Set saved")
-            repCount = 0
-            weightCount = 0.0
+            cleanFields()
         } catch {
             print(error)
         }
+    }
+    
+    private func cleanFields() {
+        repCount = 0
+        weightCount = 0.0
     }
 }
 

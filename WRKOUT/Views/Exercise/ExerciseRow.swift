@@ -11,6 +11,6 @@ struct ExerciseRow: View {
     var reps: Int
     var weight: Double
     var body: some View {
-        Text("Reps: \(reps.description), Weight: \(weight.description)")
+        Text("Reps: \(reps.description), Weight: \(weight.description) KG")
     }
 }
