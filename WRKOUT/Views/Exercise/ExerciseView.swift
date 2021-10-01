@@ -26,24 +26,19 @@ struct ExerciseView: View {
         }()
     
     var body: some View {
-            VStack {
-                List {
-                    Section(content:{
-                        ForEach(sets.filter {
-                            $0.exercise == exercise
-                        }) { workoutSet in
-                            ExerciseRow(
-                                reps: Int(workoutSet.reps),
-                                weight: workoutSet.weight)
-                                .font(.body)
-                        }
-                        // needs to be date
-                    }, header: {
-                        Text("uga uga")
-                    })
+        List {
+            ForEach(sets.filter {
+                $0.exercise == exercise
+            }) { (exerciseSet) in
+                Section(header: Text(formatDate(date: exerciseSet.created!))) {
+                    ForEach(sets.filter {
+                        $0.created == exerciseSet.created
+                    }) { row in
+                        ExerciseRow(reps: Int(row.reps), weight: row.weight).font(.body)
+                    }
                 }
-
             }
+        }
             // New set sheet
             .sheet(isPresented: $showSheet) {
                 NavigationView {
@@ -120,6 +115,17 @@ struct ExerciseView: View {
         repCount = 0
         weightCount = 0.0
     }
+    
+    /**
+     Formats a given date to a useful format
+     */
+    private func formatDate(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        
+        return dateFormatter.string(from: date)
+    }
 }
 
 
@@ -137,4 +143,3 @@ public struct CustomButtonStyle: ButtonStyle {
             .opacity(configuration.isPressed ? 0.4 : 1.0)
     }
 }
-
