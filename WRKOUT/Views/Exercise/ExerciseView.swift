@@ -38,7 +38,7 @@ struct ExerciseView: View {
                 Section(header: Text(day.title)) {
                     ForEach(day.sets) { row in
                         ExerciseRow(reps: Int(row.reps), weight: row.weight).font(.body)
-                    }
+                    }.onDelete(perform: deleteExerciseSet)
                 }
             }
         }
@@ -88,7 +88,7 @@ struct ExerciseView: View {
                 Button(action: {
                     self.showSheet = true
                 }) {
-                    Image(systemName: "plus")
+                    Image(systemName: "plus").font(.system(size: 20))
                 }
             }
         }
@@ -133,6 +133,19 @@ struct ExerciseView: View {
             try viewContext.save()
             print("Set saved")
             cleanFields()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func deleteExerciseSet(at offsets: IndexSet) {
+        for index in offsets {
+            let set = sets[index]
+            viewContext.delete(set)
+        }
+        do {
+            try viewContext.save()
+            print("set deleted")
         } catch {
             print(error)
         }
