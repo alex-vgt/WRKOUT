@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,6 +34,9 @@
 		DA16706F275B88BE00D95A19 /* ExerciseSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA16706D275B88BE00D95A19 /* ExerciseSet+CoreDataProperties.swift */; };
 		DA167072275B890800D95A19 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA167070275B890800D95A19 /* Exercise+CoreDataClass.swift */; };
 		DA167073275B890800D95A19 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA167071275B890800D95A19 /* Exercise+CoreDataProperties.swift */; };
+		DA9F5823275E475700E61B3D /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = DA9F5822275E475700E61B3D /* SwiftUICharts */; };
+		DA9F5825275E48D400E61B3D /* AnalyticsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9F5824275E48D400E61B3D /* AnalyticsRow.swift */; };
+		DA9F5827275E4ACD00E61B3D /* ExerciseAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9F5826275E4ACD00E61B3D /* ExerciseAnalyticsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,8 @@
 		DA16706D275B88BE00D95A19 /* ExerciseSet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseSet+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DA167070275B890800D95A19 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Exercise+CoreDataClass.swift"; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DA167071275B890800D95A19 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Exercise+CoreDataProperties.swift"; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DA9F5824275E48D400E61B3D /* AnalyticsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsRow.swift; sourceTree = "<group>"; };
+		DA9F5826275E4ACD00E61B3D /* ExerciseAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseAnalyticsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA9F5823275E475700E61B3D /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +261,8 @@
 			isa = PBXGroup;
 			children = (
 				96E423F8254BFFED0097ADF9 /* AnalyticsView.swift */,
+				DA9F5824275E48D400E61B3D /* AnalyticsRow.swift */,
+				DA9F5826275E4ACD00E61B3D /* ExerciseAnalyticsView.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -297,6 +305,9 @@
 			dependencies = (
 			);
 			name = WRKOUT;
+			packageProductDependencies = (
+				DA9F5822275E475700E61B3D /* SwiftUICharts */,
+			);
 			productName = WRKOUT;
 			productReference = 96CB1B86254BED31001E1213 /* WRKOUT.app */;
 			productType = "com.apple.product-type.application";
@@ -368,6 +379,9 @@
 				Base,
 			);
 			mainGroup = 96CB1B7D254BED30001E1213;
+			packageReferences = (
+				DA9F5821275E475700E61B3D /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 96CB1B87254BED31001E1213 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -431,6 +445,8 @@
 				96E4240A254C03430097ADF9 /* GeneralSettingsView.swift in Sources */,
 				96E42402254C01470097ADF9 /* SettingsView.swift in Sources */,
 				DA167073275B890800D95A19 /* Exercise+CoreDataProperties.swift in Sources */,
+				DA9F5825275E48D400E61B3D /* AnalyticsRow.swift in Sources */,
+				DA9F5827275E4ACD00E61B3D /* ExerciseAnalyticsView.swift in Sources */,
 				96E423F9254BFFED0097ADF9 /* AnalyticsView.swift in Sources */,
 				96E423F0254BFEED0097ADF9 /* OverviewView.swift in Sources */,
 			);
@@ -746,6 +762,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DA9F5821275E475700E61B3D /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = exactVersion;
+				version = 1.5.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DA9F5822275E475700E61B3D /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA9F5821275E475700E61B3D /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		96BA773D254EC2A00031768A /* WrkoutData.xcdatamodeld */ = {

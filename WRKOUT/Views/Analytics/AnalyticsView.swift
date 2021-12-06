@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct AnalyticsView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(entity: Exercise.entity(), sortDescriptors: [], predicate: nil)
+    var exercises: FetchedResults<Exercise>
+    
     var body: some View {
-        Text("Analytics")
-    }
-}
-
-struct AnalyticsView_Previews: PreviewProvider {
-    static var previews: some View {
-        AnalyticsView()
+        NavigationView {
+            List {
+                ForEach(exercises) { exercise in
+                    NavigationLink(destination: ExerciseAnalyticsView(exercise: exercise)) {
+                        AnalyticsRow(title: exercise.name!)
+                    }
+                }
+            }.navigationBarTitle(Text("Analytics"), displayMode: .large)
+        }
     }
 }
