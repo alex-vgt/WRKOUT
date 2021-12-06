@@ -15,9 +15,16 @@ struct ExerciseView: View {
     var exercise: Exercise
     var title: String
     
+    var exerciseSetRequest: FetchRequest<ExerciseSet>
+    
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: Set.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Set.created, ascending: false)], predicate: nil)
-    var sets: FetchedResults<Set>
+    var sets: FetchedResults<ExerciseSet>{exerciseSetRequest.wrappedValue}
+    
+    init(exercise: Exercise, title: String) {
+        self.exercise = exercise
+        self.title = title
+        exerciseSetRequest = FetchRequest(entity: ExerciseSet.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \ExerciseSet.created, ascending: false)], predicate: NSPredicate(format: "exercise == %@", exercise))
+    }
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -27,30 +34,14 @@ struct ExerciseView: View {
     
     var body: some View {
         List {
-            ForEach(groupList(sets: sets)) { (exerciseSet: Set) in
-                Section(header: Text(formatDate(date: exerciseSet.created!))) {
-                    ForEach(sets) { row in
+            ForEach(groupSets()) { (day: Day) in
+                Section(header: Text(day.title)) {
+                    ForEach(day.sets) { row in
                         ExerciseRow(reps: Int(row.reps), weight: row.weight).font(.body)
                     }
                 }
             }
         }
-        
-        //        List {
-        //            ForEach(sets.filter {
-        //                // get all sets for given exercise
-        //                $0.exercise == exercise
-        //            }) { (exerciseSet: Set) in
-        //                Section(header: Text(formatDate(date: exerciseSet.created!))) {
-        //                    ForEach(sets.filter {
-        //                        Calendar.current.compare($0.created!, to: exerciseSet.created!, toGranularity: Calendar.Component.day) == .orderedDescending
-        //                        // checkIfSameDay(date1: $0.created!, date2: exerciseSet.created!)
-        //                    }) { row in
-        //                        ExerciseRow(reps: Int(row.reps), weight: row.weight).font(.body)
-        //                    }
-        //                }
-        //            }
-        //        }
         
         // New set sheet
         .sheet(isPresented: $showSheet) {
@@ -103,15 +94,38 @@ struct ExerciseView: View {
         }
     }
     
+    struct Day: Identifiable {
+        let id = UUID()
+        let title: String
+        let sets: [ExerciseSet]
+        let date: Date
+    }
+    
+    private func groupSets() -> [Day] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+
+        let grouped = Dictionary(grouping: sets) { (exSet: ExerciseSet) -> String in
+            dateFormatter.string(from: exSet.created!)
+        }
+        
+        let sections = grouped.map {date -> Day in
+            Day(title: date.key, sets: date.value, date: date.value[0].created!)
+        }.sorted { $0.date > $1.date }
+        
+        return sections
+    }
+    
     func saveNewSet(reps: Int, weight: Double) {
         print(reps, weight)
-        let newSet = Set(context: viewContext)
+        let newSet = ExerciseSet(context: viewContext)
         newSet.weight = weight
         newSet.reps = Int64(reps)
         newSet.exercise = exercise
         newSet.id = UUID()
         if #available(iOS 15, *) {
-            newSet.created = Date.now
+            newSet.created = Calendar.current.startOfDay(for: Date.now)
         } else {
             newSet.created = Date()
         }
@@ -129,24 +143,6 @@ struct ExerciseView: View {
         weightCount = 0.0
     }
     
-    private func groupList(sets: FetchedResults<Set>) -> FetchedResults<Set> {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        
-        var dates: [Date] = []
-        
-        sets.forEach { singleSet in
-            dateFormatter.date(from: singleSet.created!.description)
-            dates.append(Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: singleSet.created!))!)
-        }
-        print("dates", dates)
-        let groupedSets = Dictionary(grouping: sets, by: { $0.created })
-        
-        
-        return sets
-    }
-    
     /**
      Formats a given date to a useful format
      */
@@ -157,17 +153,6 @@ struct ExerciseView: View {
         dateFormatter.timeStyle = .none
         
         return dateFormatter.string(from: date)
-    }
-    
-    private func checkIfSameDay(date1: Date, date2: Date) -> Bool {
-        let cal = Calendar.current
-        return cal.isDate(date1, inSameDayAs: date2)
-    }
-    
-    private func sortDates(date1: Date, date2: Date) -> Bool {
-        let cal = Calendar.current
-        let res = cal.compare(date1, to: date2, toGranularity: Calendar.Component.day)
-        return true
     }
 }
 
