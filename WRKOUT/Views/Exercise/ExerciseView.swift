@@ -52,13 +52,13 @@ struct ExerciseView: View {
                     Text("Reps").font(Font.body.weight(.bold))
                     Stepper("\(repCount)",
                             value: $repCount,
-                            in: 0...100)
+                            in: 0...100).font(.system(size: 20)).padding()
                     Divider()
                     
                     Text("Weight").font(Font.body.weight(.bold))
                     TextField("Weight", value: $weightCount, formatter: formatter)
-                        .font(Font.body.weight(.medium))
-                        .padding(5)
+                        .font(.system(size: 20))
+                        .padding()
                         .keyboardType(.decimalPad)
                     Button(action: {
                         saveNewSet(reps: $repCount.wrappedValue, weight: $weightCount.wrappedValue)
@@ -74,7 +74,7 @@ struct ExerciseView: View {
                             self.showSheet = false
                             cleanFields()
                         }) {
-                            Text("Done").fontWeight(.semibold)
+                            Text("Done").font(.system(size: 20))
                         }
                     }
                 }
