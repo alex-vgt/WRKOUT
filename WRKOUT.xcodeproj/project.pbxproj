@@ -30,10 +30,10 @@
 		96E4240A254C03430097ADF9 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E42409254C03430097ADF9 /* GeneralSettingsView.swift */; };
 		96E4240F254C035E0097ADF9 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E4240E254C035E0097ADF9 /* ProfileSettingsView.swift */; };
 		9A87E40E26EB7C9D00BDD618 /* ExerciseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A87E40D26EB7C9D00BDD618 /* ExerciseRow.swift */; };
+		DA0FA983275FDF1800E8B501 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0FA981275FDF1800E8B501 /* Exercise+CoreDataClass.swift */; };
+		DA0FA984275FDF1800E8B501 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0FA982275FDF1800E8B501 /* Exercise+CoreDataProperties.swift */; };
 		DA16706E275B88BE00D95A19 /* ExerciseSet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA16706C275B88BE00D95A19 /* ExerciseSet+CoreDataClass.swift */; };
 		DA16706F275B88BE00D95A19 /* ExerciseSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA16706D275B88BE00D95A19 /* ExerciseSet+CoreDataProperties.swift */; };
-		DA167072275B890800D95A19 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA167070275B890800D95A19 /* Exercise+CoreDataClass.swift */; };
-		DA167073275B890800D95A19 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA167071275B890800D95A19 /* Exercise+CoreDataProperties.swift */; };
 		DA9F5823275E475700E61B3D /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = DA9F5822275E475700E61B3D /* SwiftUICharts */; };
 		DA9F5825275E48D400E61B3D /* AnalyticsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9F5824275E48D400E61B3D /* AnalyticsRow.swift */; };
 		DA9F5827275E4ACD00E61B3D /* ExerciseAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9F5826275E4ACD00E61B3D /* ExerciseAnalyticsView.swift */; };
@@ -86,10 +86,10 @@
 		96E42409254C03430097ADF9 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		96E4240E254C035E0097ADF9 /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
 		9A87E40D26EB7C9D00BDD618 /* ExerciseRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRow.swift; sourceTree = "<group>"; };
+		DA0FA981275FDF1800E8B501 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DA0FA982275FDF1800E8B501 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DA16706C275B88BE00D95A19 /* ExerciseSet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseSet+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DA16706D275B88BE00D95A19 /* ExerciseSet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseSet+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		DA167070275B890800D95A19 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Exercise+CoreDataClass.swift"; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
-		DA167071275B890800D95A19 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Exercise+CoreDataProperties.swift"; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DA9F5824275E48D400E61B3D /* AnalyticsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsRow.swift; sourceTree = "<group>"; };
 		DA9F5826275E4ACD00E61B3D /* ExerciseAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseAnalyticsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,8 +142,8 @@
 		96BA7759254EC7670031768A /* Exercise */ = {
 			isa = PBXGroup;
 			children = (
-				DA167070275B890800D95A19 /* Exercise+CoreDataClass.swift */,
-				DA167071275B890800D95A19 /* Exercise+CoreDataProperties.swift */,
+				DA0FA981275FDF1800E8B501 /* Exercise+CoreDataClass.swift */,
+				DA0FA982275FDF1800E8B501 /* Exercise+CoreDataProperties.swift */,
 			);
 			path = Exercise;
 			sourceTree = "<group>";
@@ -433,8 +433,8 @@
 				968E5F43254C164D00790640 /* WorkoutView.swift in Sources */,
 				96CB180E2555A1AA00BCC8B6 /* ExerciseView.swift in Sources */,
 				96CB1B8C254BED31001E1213 /* ContentView.swift in Sources */,
+				DA0FA983275FDF1800E8B501 /* Exercise+CoreDataClass.swift in Sources */,
 				96BA773F254EC2A00031768A /* WrkoutData.xcdatamodeld in Sources */,
-				DA167072275B890800D95A19 /* Exercise+CoreDataClass.swift in Sources */,
 				DA16706E275B88BE00D95A19 /* ExerciseSet+CoreDataClass.swift in Sources */,
 				9A87E40E26EB7C9D00BDD618 /* ExerciseRow.swift in Sources */,
 				96CB18132555A22F00BCC8B6 /* WorkoutRow.swift in Sources */,
@@ -444,11 +444,11 @@
 				968E5F3D254C15D400790640 /* OverviewRow.swift in Sources */,
 				96E4240A254C03430097ADF9 /* GeneralSettingsView.swift in Sources */,
 				96E42402254C01470097ADF9 /* SettingsView.swift in Sources */,
-				DA167073275B890800D95A19 /* Exercise+CoreDataProperties.swift in Sources */,
 				DA9F5825275E48D400E61B3D /* AnalyticsRow.swift in Sources */,
 				DA9F5827275E4ACD00E61B3D /* ExerciseAnalyticsView.swift in Sources */,
 				96E423F9254BFFED0097ADF9 /* AnalyticsView.swift in Sources */,
 				96E423F0254BFEED0097ADF9 /* OverviewView.swift in Sources */,
+				DA0FA984275FDF1800E8B501 /* Exercise+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
