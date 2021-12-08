@@ -19,7 +19,7 @@ struct ExerciseAnalyticsView: View {
     
     init(exercise: Exercise) {
         self.exercise = exercise
-        exerciseSetRequest = FetchRequest(entity: ExerciseSet.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \ExerciseSet.created, ascending: false)], predicate: NSPredicate(format: "exercise == %@", exercise))
+        exerciseSetRequest = FetchRequest(entity: ExerciseSet.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \ExerciseSet.created, ascending: true)], predicate: NSPredicate(format: "exercise == %@", exercise))
     }
     
     var body: some View {
