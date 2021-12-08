@@ -125,7 +125,7 @@ struct ExerciseView: View {
         newSet.exercise = exercise
         newSet.id = UUID()
         if #available(iOS 15, *) {
-            newSet.created = Calendar.current.startOfDay(for: Date.now)
+            newSet.created = Date.now
         } else {
             newSet.created = Date()
         }
@@ -154,18 +154,6 @@ struct ExerciseView: View {
     private func cleanFields() {
         repCount = 0
         weightCount = 0.0
-    }
-    
-    /**
-     Formats a given date to a useful format
-     */
-    private func formatDate(date: Date) -> String {
-        print("format date", date)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        
-        return dateFormatter.string(from: date)
     }
 }
 
