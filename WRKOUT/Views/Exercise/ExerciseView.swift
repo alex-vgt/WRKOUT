@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ExerciseView: View {
     @State private var showSheet: Bool = false
@@ -15,15 +16,15 @@ struct ExerciseView: View {
     var exercise: Exercise
     var title: String
     
-    var exerciseSetRequest: FetchRequest<ExerciseSet>
+    @Query()
+    var sets: [ExerciseSet]
     
-    @Environment(\.managedObjectContext) private var viewContext
-    var sets: FetchedResults<ExerciseSet>{exerciseSetRequest.wrappedValue}
+    @Environment(\.modelContext)
+    private var context
     
     init(exercise: Exercise, title: String) {
         self.exercise = exercise
         self.title = title
-        exerciseSetRequest = FetchRequest(entity: ExerciseSet.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \ExerciseSet.created, ascending: false)], predicate: NSPredicate(format: "exercise == %@", exercise))
     }
     
     let formatter: NumberFormatter = {
@@ -37,7 +38,7 @@ struct ExerciseView: View {
             ForEach(groupSets()) { (day: Day) in
                 Section(header: Text(day.title)) {
                     ForEach(day.sets) { row in
-                        ExerciseRow(reps: Int(row.reps), weight: row.weight).font(.body)
+                        ExerciseRow(reps: row.reps!, weight: row.weight!).font(.body)
                     }.onDelete(perform: deleteExerciseSet)
                 }
             }
@@ -81,7 +82,7 @@ struct ExerciseView: View {
             }
         }
         
-        .navigationBarTitle(Text(exercise.name!), displayMode: .inline)
+        .navigationBarTitle(Text(exercise.name), displayMode: .inline)
         .toolbar {
             
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -119,9 +120,9 @@ struct ExerciseView: View {
     
     func saveNewSet(reps: Int, weight: Double) {
         print(reps, weight)
-        let newSet = ExerciseSet(context: viewContext)
+        let newSet = ExerciseSet(id: UUID(), exercise: exercise)
         newSet.weight = weight
-        newSet.reps = Int64(reps)
+        newSet.reps = reps
         newSet.exercise = exercise
         newSet.id = UUID()
         if #available(iOS 15, *) {
@@ -129,22 +130,18 @@ struct ExerciseView: View {
         } else {
             newSet.created = Date()
         }
-        do {
-            try viewContext.save()
+            context.insert(newSet)
             print("Set saved")
             cleanFields()
-        } catch {
-            print(error)
-        }
     }
     
     func deleteExerciseSet(at offsets: IndexSet) {
         for index in offsets {
             let set = sets[index]
-            viewContext.delete(set)
+            context.delete(set)
         }
         do {
-            try viewContext.save()
+            try context.save()
             print("set deleted")
         } catch {
             print(error)

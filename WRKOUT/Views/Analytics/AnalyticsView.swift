@@ -6,18 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AnalyticsView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: Exercise.entity(), sortDescriptors: [], predicate: nil)
-    var exercises: FetchedResults<Exercise>
+    @Query()
+    var exercises: [Exercise]
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(exercises) { exercise in
                     NavigationLink(destination: ExerciseAnalyticsView(exercise: exercise)) {
-                        AnalyticsRow(title: exercise.name!)
+                        AnalyticsRow(title: exercise.name)
                     }
                 }
             }.navigationBarTitle(Text("Analytics"), displayMode: .large)

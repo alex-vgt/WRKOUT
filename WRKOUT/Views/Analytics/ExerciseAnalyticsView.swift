@@ -7,19 +7,17 @@
 
 import SwiftUI
 import SwiftUICharts
+import SwiftData
 
 struct ExerciseAnalyticsView: View {
     
-    var exerciseSetRequest: FetchRequest<ExerciseSet>
-    
-    @Environment(\.managedObjectContext) private var viewContext
-    var sets: FetchedResults<ExerciseSet>{exerciseSetRequest.wrappedValue}
+    @Query
+    var sets: [ExerciseSet]
     
     var exercise: Exercise
     
     init(exercise: Exercise) {
         self.exercise = exercise
-        exerciseSetRequest = FetchRequest(entity: ExerciseSet.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \ExerciseSet.created, ascending: true)], predicate: NSPredicate(format: "exercise == %@", exercise))
     }
     
     var body: some View {
@@ -29,7 +27,7 @@ struct ExerciseAnalyticsView: View {
     private func getWeights() -> [Double] {
         var weights: [Double] = []
         sets.forEach { exSet in
-            weights.append(exSet.weight)
+            weights.append(exSet.weight!)
         }
         return weights
     }

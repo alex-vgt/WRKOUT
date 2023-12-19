@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct WorkoutView: View {
     var workout: Workout
     @State private var showNewExercisePopup = false
     @State private var alertInput = ""
     
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: Exercise.entity(), sortDescriptors: [], predicate: nil)
-    var exercises: FetchedResults<Exercise>
+    @Environment(\.modelContext)
+    private var context
+    
+    @Query
+    var exercises: [Exercise]
     
     var body: some View {
         VStack {
@@ -26,14 +29,14 @@ struct WorkoutView: View {
                         NavigationLink(
                             destination: ExerciseView(
                                 exercise: exercise,
-                                title: ("\(String(describing: exercise.name!))"))) {
+                                title: ("\(String(describing: exercise.name))"))) {
                             WorkoutRow(
-                                title: ("\(String(describing: exercise.name!))"))
+                                title: ("\(String(describing: exercise.name))"))
                                 .font(.body)
                         }
                     }.onDelete(perform: deleteExercise)
                 }
-                .navigationBarTitle(Text(workout.name!), displayMode: .inline)
+                .navigationBarTitle(Text(workout.name), displayMode: .inline)
                 .toolbar {
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -49,25 +52,23 @@ struct WorkoutView: View {
                         
                     }
                 }
-
-            if self.showNewExercisePopup {
-                NewExercisePopup(textString: $alertInput,
-                                 showAlert: $showNewExercisePopup,
-                                 title: "New Exercise",
-                                 message: "Save new exercise",
-                                 overview: self)
-            }
+                .alert("Enter the name of the exercise", isPresented: $showNewExercisePopup) {
+                    TextField("Exercise name", text: $alertInput).font(.body)
+                    Button("Save", action: saveNewExercise)
+                    // TODO: Fix
+                    // .disabled(alertInput == "")
+                    Button("Cancel", role: .cancel) {alertInput = ""}
+                }
     }
     }
     
-    func saveNewExercise(exerciseName: String) {
-        let newExercise = Exercise(context: viewContext)
-        newExercise.id = UUID()
-        newExercise.name = exerciseName
-        newExercise.workout = workout
+    func saveNewExercise() {
+        let newExercise = Exercise(created: Date.now, id: UUID(), name: alertInput, workout: workout)
+        context.insert(newExercise)
         do {
-            try viewContext.save()
+            try context.save()
             print("exercise saved")
+            alertInput = ""
         } catch {
             print(error)
         }
@@ -76,10 +77,10 @@ struct WorkoutView: View {
     func deleteExercise(at offsets: IndexSet) {
         for index in offsets {
             let exercise = exercises[index]
-            viewContext.delete(exercise)
+            context.delete(exercise)
         }
         do {
-            try viewContext.save()
+            try context.save()
             print("exercise deleted")
         } catch {
             print(error)
@@ -89,6 +90,6 @@ struct WorkoutView: View {
 
 struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutView(workout: Workout())
+        WorkoutView(workout: Workout(created: Date.now, id: UUID(), name: "workout"))
     }
 }
