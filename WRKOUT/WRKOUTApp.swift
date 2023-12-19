@@ -6,14 +6,23 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct WRKOUTApp: App {
-    let persistenceController = PersistenceController.shared
+    let modelContainer: ModelContainer
+    
+    init() {
+        do {
+            modelContainer = try ModelContainer(for: Workout.self)
+        } catch {
+            fatalError("Could not create model container")
+        }
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-        }
+        }.modelContainer(modelContainer)
     }
 }

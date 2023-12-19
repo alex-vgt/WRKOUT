@@ -2,19 +2,16 @@
 //  ContentView.swift
 //  WRKOUT
 //
-//  Created by Alex Voigt on 30.10.20.
+//  Created by Alexander Voigt on 19.12.23.
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Environment(\.modelContext) private var modelContext
+    
     var body: some View {
         HomeView()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
