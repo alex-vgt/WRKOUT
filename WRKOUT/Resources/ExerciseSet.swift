@@ -13,12 +13,14 @@ import SwiftData
 class ExerciseSet {
     var created: Date? = Date.now
     var id: UUID
-    var reps: Int? = 0
-    var weight: Double? = 0
+    var reps: Int
+    var weight: Double
     var exercise: Exercise
     
-    public init(id: UUID, exercise: Exercise) {
+    public init(id: UUID, exercise: Exercise, reps: Int, weight: Double) {
         self.id = id
         self.exercise = exercise
+        self.reps = reps
+        self.weight = weight
     }
 }

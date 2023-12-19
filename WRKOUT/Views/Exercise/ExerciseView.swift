@@ -16,7 +16,7 @@ struct ExerciseView: View {
     var exercise: Exercise
     var title: String
     
-    @Query()
+    @Query(sort: \ExerciseSet.created, order: .reverse)
     var sets: [ExerciseSet]
     
     @Environment(\.modelContext)
@@ -38,7 +38,7 @@ struct ExerciseView: View {
             ForEach(groupSets()) { (day: Day) in
                 Section(header: Text(day.title)) {
                     ForEach(day.sets) { row in
-                        ExerciseRow(reps: row.reps!, weight: row.weight!).font(.body)
+                        ExerciseRow(reps: row.reps, weight: row.weight).font(.body)
                     }.onDelete(perform: deleteExerciseSet)
                 }
             }
@@ -48,8 +48,6 @@ struct ExerciseView: View {
         .sheet(isPresented: $showSheet) {
             NavigationView {
                 VStack {
-                    Divider()
-                    
                     Text("Reps").font(Font.body.weight(.bold))
                     Stepper("\(repCount)",
                             value: $repCount,
@@ -80,6 +78,7 @@ struct ExerciseView: View {
                     }
                 }
             }
+            .presentationDetents([.medium, .large])
         }
         
         .navigationBarTitle(Text(exercise.name), displayMode: .inline)
@@ -106,7 +105,7 @@ struct ExerciseView: View {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
-
+        
         let grouped = Dictionary(grouping: sets) { (exSet: ExerciseSet) -> String in
             dateFormatter.string(from: exSet.created!)
         }
@@ -120,19 +119,19 @@ struct ExerciseView: View {
     
     func saveNewSet(reps: Int, weight: Double) {
         print(reps, weight)
-        let newSet = ExerciseSet(id: UUID(), exercise: exercise)
-        newSet.weight = weight
-        newSet.reps = reps
-        newSet.exercise = exercise
-        newSet.id = UUID()
+        let newSet = ExerciseSet(id: UUID(), exercise: exercise, reps: reps, weight: weight)
         if #available(iOS 15, *) {
             newSet.created = Date.now
         } else {
             newSet.created = Date()
         }
-            context.insert(newSet)
-            print("Set saved")
-            cleanFields()
+        context.insert(newSet)
+        do {
+            try context.save()
+            print("set saved")
+        } catch {
+            print(error)
+        }
     }
     
     func deleteExerciseSet(at offsets: IndexSet) {

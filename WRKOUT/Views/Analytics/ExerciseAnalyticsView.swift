@@ -27,7 +27,7 @@ struct ExerciseAnalyticsView: View {
     private func getWeights() -> [Double] {
         var weights: [Double] = []
         sets.forEach { exSet in
-            weights.append(exSet.weight!)
+            weights.append(exSet.weight)
         }
         return weights
     }
